@@ -18,7 +18,7 @@ spec:
         image: moncete/faspi:0.3
         env:
         - name: PRUEBA
-          value: "TEST" 
+          value: "PIES" 
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
