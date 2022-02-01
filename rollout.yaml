@@ -16,6 +16,9 @@ spec:
       containers:
       - name: rollouts-demo
         image: moncete/faspi:0.2
+        env:
+        - name: PRUEBA
+          value: "TEST" 
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
