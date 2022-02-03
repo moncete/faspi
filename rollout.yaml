@@ -15,10 +15,10 @@ spec:
     spec:
       containers:
       - name: rollouts-demo
-        image: moncete/faspi:0.3
+        image: moncete/faspi:0.4
         env:
         - name: PRUEBA
-          value: "PIES" 
+          value: "PIESLOCOS" 
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
