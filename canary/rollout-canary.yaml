@@ -1,0 +1,66 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: test-canary
+  namespace: prueba-rollout
+spec:
+  replicas: 2
+  revisionHistoryLimit: 3
+  selector:
+    matchLabels:
+      app: test-canary
+  template:
+    metadata:
+      labels:
+        app: test-canary
+    spec:
+      containers:
+      - name: test
+        image: moncete/faspi:0.4
+        env:
+        - name: PRUEBA
+          value: "CANARY2" 
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080
+  strategy:
+    canary:
+      stableService: prod
+      canaryService: canary
+      trafficRouting:
+        ambassador:
+          mappings:
+            - faspi
+      steps:
+      - setCanaryScale:
+          replicas: 2
+      - setWeight: 50
+      - pause: {}
+      
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: prod
+  namespace: prueba-rollout
+spec:
+  selector:
+    app: test-canary
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
+
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: canary
+  namespace: prueba-rollout
+spec:
+  selector:
+    app: test-canary
+  ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 8080
