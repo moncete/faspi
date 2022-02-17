@@ -19,7 +19,7 @@ spec:
         image: moncete/faspi:0.4
         env:
         - name: PRUEBA
-          value: "CANARY2" 
+          value: "PRUEBACANARY" 
         imagePullPolicy: Always
         ports:
         - containerPort: 8080
