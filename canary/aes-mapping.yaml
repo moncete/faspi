@@ -1,0 +1,10 @@
+apiVersion: getambassador.io/v2
+kind:  Mapping
+metadata:
+  name:  faspi-auto
+  namespace: prueba-rollout
+spec:
+  resolver: endpoint
+  prefix: /auto
+  rewrite: /
+  service: prod:80
