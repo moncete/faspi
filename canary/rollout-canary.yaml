@@ -30,7 +30,7 @@ spec:
       trafficRouting:
         ambassador:
           mappings:
-            - faspi
+            - faspi-auto
       steps:
       - setCanaryScale:
           replicas: 2
