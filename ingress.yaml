@@ -12,14 +12,14 @@ spec:
   rules:
   - http:
       paths:
-      - path: /produ
+      - path: /bueno
         pathType: Prefix
         backend:
           service:
             name: rollout-bluegreen-active
             port:
               number: 80
-      - path: /prev
+      - path: /new
         pathType: Prefix
         backend:
           service:
